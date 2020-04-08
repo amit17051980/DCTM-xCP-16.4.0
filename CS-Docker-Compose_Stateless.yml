@@ -1,0 +1,101 @@
+#For description of parameter please do refer to Readme.txt
+version: '3.7'
+services:
+  rcs:
+    image: csimagename
+    environment:
+      - DOCKER_HOST=10.31.169.35
+      - DATABASE_HOST=10.31.170.102
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SERVER_PORT=5432
+      - SERVICE_NAME=MyPostgres
+      - ROOT_PASSWORD=${ROOT_PASSWORD}
+      - INSTALL_OWNER=dmadmin
+      - INSTALL_OWNER_PASSWORD=${INSTALL_OWNER_PASSWORD}
+      - DOCBASE_NAME=DocbaseName
+      - GLOBAL_REGISTRY_PASSWORD=${GLOBAL_REGISTRY_PASSWORD}
+      - AEK_ALGORITHM=AES_256_CBC
+      - AEK_PASSPHRASE=${AEK_PASSPHRASE}
+      - AEK_NAME=CSaek
+      - CONFIGURE_THUMBNAIL_SERVER=NO
+      - THUMBNAIL_SERVER_PORT=8081
+      - THUMBNAIL_SERVER_SSL_PORT=8443
+      - EXTERNAL_DOCBROKER_PORT=1689
+      - CONTENTSERVER_PORT=50000
+      - APP_SERVER_PASSWORD=${APP_SERVER_PASSWORD}
+      - INSTALL_OWNER_UID=1000
+      - HIGH_VOLUME_SERVER_LICENSE=
+      - TRUSTED_LICENSE=
+      - STORAGEAWARE_LICENSE=
+      - XMLSTORE_LICENSE=
+      - SNAPLOCKSTORE_LICENSE=
+      - RPS_LICENSE=
+      - FED_RECD_SERVICE_LICENSE=
+      - RECORD_MANAGER_LICENSE=
+      - PRM_LICENSE=
+      - DOCBASE_PASSWORD=${DOCBASE_PASSWORD}
+      - INSTALLER_UI=silent
+      - KEEP_TEMP_FILE=false
+      - INSTALLER_DEBUG_LOG=true
+      - DOCBASE_ID=453216
+      - USE_EXISTING_DATABASE_ACCOUNT=
+      - INDEXSPACE_NAME=DM_XCHIVE_DOCBASE
+      - USE_EXISTING_AEK=false
+    hostname:
+      "conatiner_hostname"
+    container_name:
+      "containername"
+    ports:
+      - "DOCBROKER_PORT:DOCBROKER_PORT"
+      - "DOCBROKER_SECURE_PORT:DOCBROKER_SECURE_PORT"
+      - "CONTENT_SERVER_PORT:CONTENT_SERVER_PORT"
+      - "CONTENT_SERVER_SECURE_PORT:CONTENT_SERVER_SECURE_PORT"
+      - "METHOD_SVR_PORT:9080"
+      - "METHOD_SVR_SECURE_PORT:9082"
+      - "METHOD_SVR_JMX_PORT:9081"
+      - "APP_SERVER_MGMNT_PORT:9084"
+      - "THUMBNAIL_SERVER_PORT:8081"
+      - "THUMBNAIL_SERVER_SSL_PORT:8443"
+    volumes:
+      - DocbaseName_odbc:/opt/dctm/odbc
+      - DocbaseName_data:/opt/dctm/data
+      - DocbaseName_dba:/opt/dctm/dba
+      - DocbaseName_share:/opt/dctm/share
+      - DocbaseName_dfc:/opt/dctm/config
+      - DocbaseName_mdserver_conf:/opt/dctm/mdserver_conf
+      - DocbaseName_mdserver_log:/opt/dctm/wildfly11.0.0/server/DctmServer_MethodServer/log
+      - DocbaseName_mdserver_logs:/opt/dctm/wildfly11.0.0/server/DctmServer_MethodServer/logs
+      - DocbaseName_Thumbnail_Server_conf:/opt/dctm/product/16.7/thumbsrv/conf
+      - DocbaseName_Thumbnail_Server_webinf:/opt/dctm/product/16.7/thumbsrv/container/webapps/thumbsrv/WEB-INF
+      - DocbaseName_xhive_storage:/opt/dctm/xhive_storage
+      - DocbaseName_XhiveConnector:/opt/dctm/wildfly11.0.0/server/DctmServer_MethodServer/deployments/XhiveConnector.ear
+      - DocbaseName_MigrationUtility:/opt/dctm/product/16.7/install/external_apps/MigrationUtil
+    privileged: true
+#'volumes' service definition: 
+volumes:
+ DocbaseName_data:
+    driver: local
+    driver_opts:
+      share: EXTERNALDATA_HOST:DOCUMENTUM_SHARE_PATH
+ DocbaseName_share:
+    driver: local
+    driver_opts:
+      share: EXTERNALDATA_HOST:DOCUMENTUM_SHARE_PATH
+ DocbaseName_dba:
+ DocbaseName_dfc:
+ DocbaseName_odbc:
+ DocbaseName_mdserver_conf:
+ DocbaseName_mdserver_log:
+ DocbaseName_mdserver_logs:
+ DocbaseName_Thumbnail_Server_conf:
+ DocbaseName_Thumbnail_Server_webinf:
+ DocbaseName_XhiveConnector:
+    driver: local
+    driver_opts:
+     share: EXTERNALDATA_HOST:DOCUMENTUM_SHARE_PATH
+ DocbaseName_xhive_storage:
+    driver: local
+    driver_opts:
+      share: EXTERNALDATA_HOST:DOCUMENTUM_SHARE_PATH
+ DocbaseName_MigrationUtility:
