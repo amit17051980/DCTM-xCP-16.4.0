@@ -40,7 +40,7 @@ docker image ls
 If you have docker hub account, you are allowed to create 1 private docker repository. You can use this as content server private docker repository. Follow the general gudelines to push above image to your own private docker hub repository, but beware of the licensing t&c while using it this way. 
 
 # Clone the project and update the YAML file
-Use the right image and tag information inplace of below line in <b>'CS-Docker-Compose_Stateless.yml'</b>.
+Use the <b>'CS-Docker-Compose_Stateless.yml'</b> file, and place right image:tag information in the line below.
 
 ```yaml
 image: amit17051980/dctm-cs:16.4.0
