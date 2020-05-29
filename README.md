@@ -10,7 +10,7 @@ Please follow the guide below. If Docker and Docker Compose are already setup/av
 # Docker Setup on CentOS 7/8
 ## Install Docker using Admin user
 
-```
+```bash
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum install docker-ce docker-ce-cli containerd.io
@@ -20,15 +20,28 @@ sudo usermod -aG docker $LOGNAME
 ```
 ## Install Docker Bash Completion
 
-```
+```bash
 sudo yum install bash-completion bash-completion-extras
 sudo curl -L https://raw.githubusercontent.com/docker/compose/1.25.5/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 ```
 ## Install Docker Compose
 
-```
+```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-# Upload Content Server Docker Image to Local/Private Registry
+# Upload Content Server Docker Image to Local Registry
 
+```bash
+tar -xvf contentserver_docker_ubuntu.tar
+docker load -i Contentserver_Ubuntu.tar
+docker image ls
+```
+If you have docker hub account, you are allowed to create 1 private docker repository. You can use this as content server private docker repository. Follow the general gudelines to push above image to your own private docker hub repository, but beware of the licensing t&c while using it this way. 
+
+# Clone the project and update the YAML file
+Use the right image and tag information inplace of below line in <b>'CS-Docker-Compose_Stateless.yml'</b>.
+
+```yaml
+image: amit17051980/dctm-cs:16.4.0
+```
