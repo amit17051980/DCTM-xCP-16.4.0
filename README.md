@@ -102,7 +102,7 @@ docker exec -it documentum-cs su - dmadmin -c 'idql documentum -udmadmin -pfakep
 Get the Process Engine tar file (**process_engine_linux.tar**) form Support site and place it to current working directory.
 Initialise the silent installation property file (**pe.properties**).
 
-```property
+```yaml
 INSTALLER_UI=SILENT
 PE.INSTALL_TARGET=/opt/dctm
 PE.FQDN=localhost
@@ -122,7 +122,6 @@ docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; tar -xvf pro
 docker exec documentum-cs su - dmadmin -c 'rm -rf /opt/dctm_docker/PE/process_engine_linux.tar'
 docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; ./peSetup.bin -f pe.properties'
 ```
-
 # Create xCP App Container
 ```bash
 docker run --network dctm-dev -d --name documentum-xcp --hostname documentum-xcp -p 8000:8080 amit17051980/dctm-tomcat:latest
@@ -132,4 +131,18 @@ docker cp catalina.properties documentum-xcp:/usr/local/tomcat/conf/
 docker cp tomcat-users.xml documentum-xcp:/usr/local/tomcat/conf/
 docker cp custom-conf documentum-xcp:/usr/local/tomcat/
 ```
+# Create Documentum Administrator Container
+
+```bash
+docker run --network dctm-dev -d --name documentum-da --hostname documentum-da -p 8000:8080 amit17051980/dctm-tomcat:latest
+docker exec documentum-da su -c "cp -r /usr/local/tomcat/webapps.dist/manager /usr/local/tomcat/webapps/"
+docker cp context.xml documentum-da:/usr/local/tomcat/webapps/manager/META-INF/
+docker cp catalina.properties documentum-da:/usr/local/tomcat/conf/
+docker cp tomcat-users.xml documentum-da:/usr/local/tomcat/conf/
+docker cp custom-conf documentum-da:/usr/local/tomcat/
+docker cp da documentum-da:/usr/local/tomcat/webapps/
+```
+
+# Apendix - JMS BPM Issue
+Please review the dm_jms_config object to check the BPM URL post process engine installation.
 
