@@ -143,6 +143,24 @@ docker cp custom-conf documentum-da:/usr/local/tomcat/
 docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
 
+# Create xDA Container
+Place xda and xda-tools inside xda-docker-build.
+```bash
+cd xda-docker-build
+docker build -t xda .
+docker run --network dctm-dev --name xda --hostname xda -d -p 7000:7000 xda
+docker exec -it xda bash
+
+cd /opt/xda-tools/config/
+echo "" >>xda.properties 
+echo "xda-host = localhost" >>xda.properties 
+echo "xda-port = 7000" >>xda.properties 
+echo "xda-schema = http" >>xda.properties 
+
+cd ../bin/
+./configure-xda.sh
+```
+
 # Apendix - JMS BPM Issue
 Please review the dm_jms_config object to check the BPM URL post process engine installation.
 
