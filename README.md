@@ -134,11 +134,8 @@ docker cp custom-conf documentum-xcp:/usr/local/tomcat/
 # Create Documentum Administrator Container
 
 ```bash
-docker run --network dctm-dev -d --name documentum-da --hostname documentum-da -p 8000:8080 amit17051980/dctm-tomcat:latest
-docker exec documentum-da su -c "cp -r /usr/local/tomcat/webapps.dist/manager /usr/local/tomcat/webapps/"
-docker cp context.xml documentum-da:/usr/local/tomcat/webapps/manager/META-INF/
+docker run --network dctm-dev -d --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
 docker cp catalina.properties documentum-da:/usr/local/tomcat/conf/
-docker cp tomcat-users.xml documentum-da:/usr/local/tomcat/conf/
 docker cp custom-conf documentum-da:/usr/local/tomcat/
 docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
