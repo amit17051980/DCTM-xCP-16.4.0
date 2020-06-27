@@ -13,13 +13,9 @@ services:
       - '5432:5432'
     volumes:
       - database-data:/var/lib/postgresql/data/
-    command:
-      bash -c "su - postgres && mkdir /var/lib/postgresql/data/db_documentum_dat.dat"
 
   rcs:
     image: amit17051980/dctm-cs:16.4.0
-    depends_on: 
-      - postgres
     environment:
       - DOCKER_HOST=172.31.142.82
       - DATABASE_HOST=postgres
