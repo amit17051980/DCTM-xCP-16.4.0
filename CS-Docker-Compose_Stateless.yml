@@ -18,7 +18,8 @@ services:
 
   rcs:
     image: amit17051980/dctm-cs:16.4.0
-    depends_on: postgres
+    depends_on: 
+      - postgres
     environment:
       - DOCKER_HOST=172.31.142.82
       - DATABASE_HOST=postgres
