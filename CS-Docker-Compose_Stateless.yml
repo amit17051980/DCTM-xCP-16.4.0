@@ -1,10 +1,25 @@
 #For description of parameter please do refer to Readme.txt
 version: '3.3'
 services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    hostname:
+      postgres
+    container_name:
+      postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    command:
+      bash -c "su - postgres && mkdir /var/lib/postgresql/data/db_documentum_dat.dat"
+
   rcs:
     image: amit17051980/dctm-cs:16.4.0
     environment:
-      - DOCKER_HOST=192.168.0.101
+      - DOCKER_HOST=172.31.142.82
       - DATABASE_HOST=postgres
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
@@ -75,6 +90,7 @@ services:
     privileged: true
 #'volumes' service definition: 
 volumes:
+ database-data:
  documentum_data:
  documentum_share:
  documentum_dba:
