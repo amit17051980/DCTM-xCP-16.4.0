@@ -135,8 +135,6 @@ docker cp custom-conf documentum-xcp:/usr/local/tomcat/
 
 ```bash
 docker run --network dctm-dev -d --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
-docker cp catalina.properties documentum-da:/usr/local/tomcat/conf/
-docker cp custom-conf documentum-da:/usr/local/tomcat/
 docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
 
