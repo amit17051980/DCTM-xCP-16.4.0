@@ -4,6 +4,7 @@
 2. OpneText Documentum is accessible and available to download
 3. Little knowledge on Docker and Documentum has been gained
 4. Private/Local Docker Registry to upload content server docker image
+5. (Optional) Multipass has been setup and configured to use for Ubuntu lovers. **Refer** SetupMultiPass.ps1 on Windows 10 Pro PCs.
 
 Please follow the guide below. If Docker and Docker Compose are already setup/available, please ignore the 'Docker Setup on CentOS 7/8' section.
 
