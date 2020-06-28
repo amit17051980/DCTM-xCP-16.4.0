@@ -17,7 +17,7 @@ services:
   rcs:
     image: amit17051980/dctm-cs:16.4.0
     environment:
-      - DOCKER_HOST=172.31.142.82
+      - DOCKER_HOST=127.0.0.1
       - DATABASE_HOST=postgres
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
