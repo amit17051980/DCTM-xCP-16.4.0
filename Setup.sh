@@ -1,5 +1,6 @@
-docker network create dctm-dev
+cd /home/ubuntu/DCTM-xCP-16.4.0
+sudo docker network create dctm-dev
 source documentum-environment.profile
-docker-compose -f CS-Docker-Compose_Stateless.yml up -d
-docker exec postgres su -c "mkdir /var/lib/postgresql/data/db_documentum_dat.dat" postgres
-docker logs -f documentum-cs
+sudo docker-compose -f CS-Docker-Compose_Stateless.yml up -d
+sudo docker exec postgres su -c "mkdir /var/lib/postgresql/data/db_documentum_dat.dat" postgres
+sudo docker ps
