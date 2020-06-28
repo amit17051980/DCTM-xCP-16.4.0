@@ -20,7 +20,7 @@ $user = read-host -Prompt "Enter DockerHub User Name: "
 $pass = Read-Host -Prompt "Enter DockerHub Password: "
 
 multipass exec -v dctm-16-4 -- sudo docker login -u ${user} -p ${pass}
-multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/Setup.sh
+multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupCS.sh
 
 echo "Waiting for Documntum Server to intialise in next 30 minutes. "
 echo "But, if you killed the process by accident, run the command below to decide the next step"
@@ -47,6 +47,4 @@ multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupPE.sh
 multipass shell dctm-16-4
 cd /home/ubuntu/project
 ls -ltr
-
-
 
