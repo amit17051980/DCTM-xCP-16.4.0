@@ -49,6 +49,5 @@ multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupApp.sh
 
 # Clone the project
 multipass shell dctm-16-4
-cd /home/ubuntu/project
 ls -ltr
 
