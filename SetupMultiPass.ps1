@@ -7,7 +7,7 @@ multipass mount . dctm-16-4:/home/ubuntu/media
 
 # Clone the project 
 $user = read-host -Prompt "Enter GitHub User Name: "
-$pass = Read-Host -Prompt "Enter GitHub Password: "
+$pass = Read-Host -Prompt "Enter GitHub Password: " -AsSecureString
 
 multipass exec -v dctm-16-4 -- git config --global credential.helper store
 multipass exec -v dctm-16-4 -- git clone https://${user}:${pass}@github.com/amit17051980/DCTM-xCP-16.4.0.git
