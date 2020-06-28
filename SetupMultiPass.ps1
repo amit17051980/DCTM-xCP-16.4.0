@@ -22,6 +22,24 @@ $pass = Read-Host -Prompt "Enter DockerHub Password: "
 multipass exec -v dctm-16-4 -- sudo docker login -u ${user} -p ${pass}
 multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/Setup.sh
 
+echo "Waiting for Documntum Server to intialise in next 30 minutes. "
+echo "But, if you killed the process by accident, run the command below to decide the next step"
+echo ""
+echo ":===> multipass exec -v dctm-16-4 -- sudo docker exec -it documentum-cs su - dmadmin -c 'idql documentum -udmadmin -pfakepassword'"
+echo ""
+echo "If you see below prompt, it means you are ready to go to next step. Run the script."
+echo "Connected to OpenText Documentum Server running Release 16.4.0000.0248  Linux64.Postgres"
+echo "1>"
+echo ""
+echo "SCRIPT (Next Step):===> multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/Setup.sh"
+
+# Copy Process Engine TAR file to be used in next steps.
+multipass exec -v dctm-16-4 -- cp media/Downloads/process_engine_linux.tar DCTM-xCP-16.4.0/media-files/
+
+Start-Sleep -Seconds 1800
+
+# Install Process Engine
+multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupPE.sh
 
 
 
