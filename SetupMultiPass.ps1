@@ -47,6 +47,9 @@ multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupPE.sh
 # Setup xCP App Container
 multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupApp.sh
 
+# Setup DA App Container
+multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupDA.sh
+
 # Clone the project
 multipass shell dctm-16-4
 ls -ltr
