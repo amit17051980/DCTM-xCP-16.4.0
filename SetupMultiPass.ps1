@@ -39,6 +39,9 @@ echo ":===> multipass exec -v dctm-16-4 -- bash -c ~/DCTM-xCP-16.4.0/SetupApp.sh
 # Copy Process Engine TAR file to be used in next steps.
 multipass exec -v dctm-16-4 -- cp media/Downloads/process_engine_linux.tar DCTM-xCP-16.4.0/media-files/
 
+# Copy DA to be used in next steps.
+multipass exec -v dctm-16-4 -- cp -r media/Downloads/da DCTM-xCP-16.4.0/media-files/
+
 Start-Sleep -Seconds 1800
 
 # Install Process Engine
