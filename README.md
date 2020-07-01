@@ -105,8 +105,9 @@ Initialise the silent installation property file (**pe.properties**).
 
 ```yaml
 INSTALLER_UI=SILENT
+APPSERVER.SERVER_HTTP_PORT=9080
 PE.INSTALL_TARGET=/opt/dctm
-PE.FQDN=localhost
+PE.FQDN=documentum-cs
 PE.DOCBASES_ADMIN_USER_NAME=dmadmin
 PE.DOCBASES_ADMIN_USER_PASSWORD=password
 PROCESS_ENGINE.GLOBAL_REGISTRY_ADMIN_USER_NAME=documentum
