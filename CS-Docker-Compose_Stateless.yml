@@ -1,19 +1,6 @@
 #For description of parameter please do refer to Readme.txt
 version: '3.3'
 services:
-  postgres:
-    image: postgres:9.6
-    environment:
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-    hostname:
-      postgres
-    container_name:
-      postgres
-    ports:
-      - '5432:5432'
-    volumes:
-      - database-data:/var/lib/postgresql/data/
-
   rcs:
     image: amit17051980/dctm-cs:16.4.0
     environment:
