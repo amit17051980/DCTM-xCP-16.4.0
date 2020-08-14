@@ -132,6 +132,7 @@ docker cp context.xml documentum-xcp:/usr/local/tomcat/webapps/manager/META-INF/
 docker cp catalina.properties documentum-xcp:/usr/local/tomcat/conf/
 docker cp tomcat-users.xml documentum-xcp:/usr/local/tomcat/conf/
 docker cp custom-conf documentum-xcp:/usr/local/tomcat/
+docker restart documentum-xcp
 ```
 # Create Documentum Administrator Container
 
