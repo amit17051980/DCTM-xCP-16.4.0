@@ -159,6 +159,9 @@ cd ../bin/
 ./configure-xda.sh
 ```
 
-# Apendix - JMS BPM Issue
+# Appendix - JMS BPM Issue
 Please review the dm_jms_config object to check the BPM URL post process engine installation.
+
+# Apendix - xCP Designer (Layout Issue)
+Please install http://www.microsoft.com/en-in/download/details.aspx?id=14632 patch on Windows 10 Pro to resolve this issue.
 
