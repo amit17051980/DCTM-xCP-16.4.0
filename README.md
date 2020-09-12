@@ -21,7 +21,7 @@ sudo usermod -aG docker $LOGNAME
 ## Install Docker Bash Completion
 
 ```bash
-sudo yum install bash-completion bash-completion-extras
+sudo yum install -y bash-completion bash-completion-extras
 sudo curl -L https://raw.githubusercontent.com/docker/compose/1.25.5/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 ```
 ## Install Docker Compose
