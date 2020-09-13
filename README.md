@@ -118,8 +118,8 @@ Transfer files to Documentum CS container and install the PE:
 
 ```bash
 docker exec documentum-cs su - dmadmin -c 'mkdir -p /opt/dctm_docker/PE'
-docker cp process_engine_linux.tar documentum-cs:/opt/dctm_docker/PE/
-docker cp pe.properties documentum-cs:/opt/dctm_docker/PE/
+docker cp media-files/process_engine_linux.tar documentum-cs:/opt/dctm_docker/PE/
+docker cp media-files/pe.properties documentum-cs:/opt/dctm_docker/PE/
 docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; tar -xvf process_engine_linux.tar; chmod 775 peSetup.bin'
 docker exec documentum-cs su - dmadmin -c 'rm -rf /opt/dctm_docker/PE/process_engine_linux.tar'
 docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; ./peSetup.bin -f pe.properties'
@@ -127,6 +127,7 @@ docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; ./peSetup.bi
 # Create xCP App Container
 ```bash
 docker run --network dctm-dev -d --name documentum-xcp --hostname documentum-xcp -p 8000:8080 amit17051980/dctm-tomcat:latest
+sleep 3s
 docker exec documentum-xcp su -c "cp -r /usr/local/tomcat/webapps.dist/manager /usr/local/tomcat/webapps/"
 docker cp media-files/context.xml documentum-xcp:/usr/local/tomcat/webapps/manager/META-INF/
 docker cp media-files/catalina.properties documentum-xcp:/usr/local/tomcat/conf/
@@ -144,9 +145,10 @@ docker cp da documentum-da:/usr/local/tomcat/webapps/
 # Create xDA Container
 Place xda and xda-tools inside xda-docker-build.
 ```bash
-cd xda-docker-build
-docker build -t xda .
-docker run --network dctm-dev --name xda --hostname xda -d -p 7000:7000 xda
+#cd xda-docker-build
+#docker build -t xda .
+docker pull amit17051980/dctm-cs:xda-16.4
+docker run --network dctm-dev --name xda --hostname xda -d -p 7000:7000 amit17051980/dctm-cs:xda-16.4
 docker exec -it xda bash
 
 cd /opt/xda-tools/config/
