@@ -78,6 +78,7 @@ export LOCKBOX_PASSPHRASE=password
 ## Compose the docker container for Content Server
 
 ```bash
+source documentum-environment.profile
 docker login
 docker-compose -f CS-Docker-Compose_Stateless.yml up -d
 ```
