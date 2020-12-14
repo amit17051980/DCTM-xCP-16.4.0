@@ -150,7 +150,7 @@ Place xda and xda-tools inside xda-docker-build.
 #cd xda-docker-build
 #docker build -t xda .
 docker pull amit17051980/dctm-cs:xda-16.4
-docker run --network dctm-dev --name xda --hostname xda -d -p 7000:7000 amit17051980/dctm-cs:xda-16.4
+docker run --network dctm-dev --name xda --hostname xda -d -p 7000:7000 amit17051980/dctm-cs:xda-16.4-Patch
 docker exec -it xda bash
 
 cd /opt/xda-tools/config/
