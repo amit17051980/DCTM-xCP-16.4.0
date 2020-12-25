@@ -128,7 +128,7 @@ docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; ./peSetup.bi
 ```
 # Create xCP App Container
 ```bash
-docker run --network dctm-dev -d --name documentum-xcp --hostname documentum-xcp -p 8000:8080 amit17051980/dctm-tomcat:latest
+docker run --network dctm-dev -d --name documentum-xcp --hostname documentum-xcp -p 8000:8080 -p 443:8443 amit17051980/dctm-tomcat:latest
 sleep 3s
 docker exec documentum-xcp su -c "cp -r /usr/local/tomcat/webapps.dist/manager /usr/local/tomcat/webapps/"
 docker cp media-files/context.xml documentum-xcp:/usr/local/tomcat/webapps/manager/META-INF/
