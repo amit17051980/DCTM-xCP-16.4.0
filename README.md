@@ -167,7 +167,7 @@ cd ../bin/
 Please follow the link https://github.com/amit17051980/DCTM-xCP-16.4.0/blob/master/KB10912939.pdf
 
 # Appendix - Enable SSL on xCP App Server
-Please follow the link 
+Please follow the link https://github.com/amit17051980/xCP-SAML2-OKTA/wiki#1-enable-ssl-on-xcp-app-server-tomcat-85
 
 # Appendix - JMS BPM Issue
 Please review the dm_jms_config object to check the BPM URL post process engine installation.
