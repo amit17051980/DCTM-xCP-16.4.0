@@ -163,6 +163,12 @@ cd ../bin/
 ./configure-xda.sh
 ```
 
+# Appendix - Enable SSL on Java Method Server
+Please follow the link https://github.com/amit17051980/DCTM-xCP-16.4.0/blob/master/KB10912939.pdf
+
+# Appendix - Enable SSL on xCP App Server
+Please follow the link 
+
 # Appendix - JMS BPM Issue
 Please review the dm_jms_config object to check the BPM URL post process engine installation.
 
