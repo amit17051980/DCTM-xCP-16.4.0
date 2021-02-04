@@ -128,7 +128,7 @@ docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; ./peSetup.bi
 ```
 # Create xCP App Container
 ```bash
-docker run --network dctm-dev -d --name documentum-xcp --hostname documentum-xcp -p 8000:8080 -p 443:8443 amit17051980/dctm-tomcat:latest
+docker run --network dctm-dev -d --log-opt max-size=2m --log-opt max-file=2 --name documentum-xcp --hostname documentum-xcp -p 8000:8080 -p 443:8443 amit17051980/dctm-tomcat:latest
 sleep 3s
 docker exec documentum-xcp su -c "cp -r /usr/local/tomcat/webapps.dist/manager /usr/local/tomcat/webapps/"
 docker cp media-files/context.xml documentum-xcp:/usr/local/tomcat/webapps/manager/META-INF/
@@ -140,7 +140,7 @@ docker restart documentum-xcp
 # Create Documentum Administrator Container
 
 ```bash
-docker run --network dctm-dev -d --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
+docker run --network dctm-dev -d --log-opt max-size=2m --log-opt max-file=2 --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
 docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
 
@@ -150,7 +150,7 @@ Place xda and xda-tools inside xda-docker-build.
 #cd xda-docker-build
 #docker build -t xda .
 docker pull amit17051980/dctm-cs:xda-16.4-Patch
-docker run --network dctm-dev --name xda --hostname xda -d -p 7000:7000 amit17051980/dctm-cs:xda-16.4-Patch
+docker run --network dctm-dev --name xda --hostname xda -d --log-opt max-size=2m --log-opt max-file=2 -p 7000:7000 amit17051980/dctm-cs:xda-16.4-Patch
 docker exec -it xda bash
 
 cd /opt/xda-tools/config/
