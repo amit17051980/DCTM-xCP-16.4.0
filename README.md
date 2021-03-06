@@ -60,11 +60,13 @@ Use the <b>'CS-Docker-Compose_Stateless.yml'</b> file, and place right image:tag
 **CS-Docker-Compose_Stateless.yml**
 
 ```yaml
+E.g.,
 image: amit17051980/dctm-cs:16.4.0
 ```
 **Environment File**
 
 ```bash
+E.g.,
 export APP_SERVER_PASSWORD=password
 export INSTALL_OWNER_PASSWORD=password
 export ROOT_PASSWORD=password
@@ -106,6 +108,7 @@ Get the Process Engine tar file (**process_engine_linux.tar**) form Support site
 Initialise the silent installation property file (**pe.properties**).
 
 ```yaml
+E.g.,
 INSTALLER_UI=SILENT
 APPSERVER.SERVER_HTTP_PORT=9080
 PE.INSTALL_TARGET=/opt/dctm
@@ -118,6 +121,7 @@ PROCESS_ENGINE.SECURE.GLOBAL_REGISTRY_ADMIN_PASSWORD=password
 
 Transfer files to Documentum CS container and install the PE:
 
+Make sure to download and put Process Engine binary in `media-files/process_engine_linux.tar`
 ```bash
 docker exec documentum-cs su - dmadmin -c 'mkdir -p /opt/dctm_docker/PE'
 docker cp media-files/process_engine_linux.tar documentum-cs:/opt/dctm_docker/PE/
@@ -139,16 +143,19 @@ docker restart documentum-xcp
 ```
 # Create Documentum Administrator Container
 
+In this section we assume that you have **da** folder with all the relevant files in the **WEB-INF/classes**.
 ```bash
 docker run --network dctm-dev -d --log-opt max-size=2m --log-opt max-file=2 --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
 docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
 
 # Create xDA Container
-Place xda and xda-tools inside xda-docker-build.
+Place xda and xda-tools inside xda-docker-build folder to create docker container for xda, and upload to your private registry. Please refer Dockerfile.
 ```bash
+E.g.,
 #cd xda-docker-build
 #docker build -t xda .
+
 docker pull amit17051980/dctm-cs:xda-16.4-Patch
 docker run --network dctm-dev --name xda --hostname xda -d --log-opt max-size=2m --log-opt max-file=2 -p 7000:7000 amit17051980/dctm-cs:xda-16.4-Patch
 docker exec -it xda bash
