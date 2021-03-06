@@ -103,7 +103,13 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 docker exec -it documentum-cs su - dmadmin -c 'idql documentum -udmadmin -pfakepassword'
 ```
 
-# Install Process Engine
+**Note**: If you wish, sections below can be done while Content Server is being setup.
+1. Create xCP App Container
+2. Create xDA Container
+3. Create Documentum Administrator Container
+
+
+# Install Process Engine (Post Content Server Health Check)
 Get the Process Engine tar file (**process_engine_linux.tar**) form Support site and place it to current working directory.
 Initialise the silent installation property file (**pe.properties**).
 
@@ -130,6 +136,7 @@ docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; tar -xvf pro
 docker exec documentum-cs su - dmadmin -c 'rm -rf /opt/dctm_docker/PE/process_engine_linux.tar'
 docker exec documentum-cs su - dmadmin -c 'cd /opt/dctm_docker/PE/; ./peSetup.bin -f pe.properties'
 ```
+
 # Create xCP App Container
 ```bash
 docker run --network dctm-dev -d --log-opt max-size=2m --log-opt max-file=2 --name documentum-xcp --hostname documentum-xcp -p 8000:8080 -p 443:8443 amit17051980/dctm-tomcat:latest
@@ -140,13 +147,6 @@ docker cp media-files/catalina.properties documentum-xcp:/usr/local/tomcat/conf/
 docker cp media-files/tomcat-users.xml documentum-xcp:/usr/local/tomcat/conf/
 docker cp media-files/custom-conf documentum-xcp:/usr/local/tomcat/
 docker restart documentum-xcp
-```
-# Create Documentum Administrator Container
-
-In this section we assume that you have **da** folder with all the relevant files in the **WEB-INF/classes**.
-```bash
-docker run --network dctm-dev -d --log-opt max-size=2m --log-opt max-file=2 --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
-docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
 
 # Create xDA Container
@@ -168,6 +168,14 @@ echo "xda-schema = http" >>xda.properties
 
 cd ../bin/
 ./configure-xda.sh
+```
+
+# Create Documentum Administrator Container
+
+In this section we assume that you have **da** folder with all the relevant files in the **WEB-INF/classes**.
+```bash
+docker run --network dctm-dev -d --log-opt max-size=2m --log-opt max-file=2 --name documentum-da --hostname documentum-da -p 8080:8080 amit17051980/tomcat:7.0
+docker cp da documentum-da:/usr/local/tomcat/webapps/
 ```
 
 # Appendix - Enable SSL on Java Method Server
